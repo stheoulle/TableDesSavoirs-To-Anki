@@ -1,0 +1,32 @@
+# Credentials
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Output (keep the directory, not the data files)
+output/*.json
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Token / session caches (contain sensitive data)
+.token_cache.json
+.site_token_cache.json
+
+# Playwright persistent browser profile (contains session cookies)
+.playwright_profile/

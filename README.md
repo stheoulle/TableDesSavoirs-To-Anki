@@ -18,7 +18,7 @@ Authentication uses the **site's own Twitch OAuth app** — not yours. The flow:
 
 ## Project Structure
 
-```
+```bash
 TableSavoir/
 ├── .env                       ← config (never commit this)
 ├── .env.example               ← config template
@@ -106,7 +106,8 @@ Open Chrome DevTools on the site after logging in:
 **Application → Local Storage → `https://latabledessavoirs.fr` → `ltds-auth`**
 
 Copy the value and set it in `.env`:
-```
+
+```bash
 SITE_JWT={"token":"eyJ...","expiresAt":1234567890000}
 ```
 
@@ -116,21 +117,6 @@ SITE_JWT={"token":"eyJ...","expiresAt":1234567890000}
 rm .site_token_cache.json
 python -m src.main 49
 ```
-
----
-
-## Real API endpoints (discovered from JS bundle)
-
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| GET | `/info` | ❌ | App state / current season |
-| GET | `/me` | ✅ | User profile |
-| GET | `/game/offline/{N}` | ✅ | Full quiz data for day N (past quizzes) |
-| GET | `/game/{type}/{N}` | ✅ | Player state for type + day |
-| GET | `/game/{type}?day=N` | ✅ | Game status |
-| POST | `/game/{type}/start/{q}` | ✅ | Start question q |
-| POST | `/game/{type}/answer` | ✅ | Submit answer |
-| POST | `/game/{type}/review` | ✅ | Place bonus tokens + finalize |
 
 ---
 
@@ -160,4 +146,3 @@ python -m src.main 49
 
 - Per the site's rules, use of this tool for **live play assistance** is against their fair-play policy. Intended for post-game review only.
 - The `.playwright_profile/` directory saves Twitch login cookies — you only need to log in once until the Twitch session expires.
-
