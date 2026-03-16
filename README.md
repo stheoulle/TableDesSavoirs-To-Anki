@@ -28,6 +28,8 @@ TableSavoir/
 ├── output/                    ← saved JSON results (gitignored)
 ├── .site_token_cache.json     ← cached site JWT (gitignored, created on first login)
 ├── .playwright_profile/       ← Playwright browser session (gitignored, reuse across runs)
+├── scripts/
+│   └── json_to_anki.py        ← convert quiz JSON files to Anki TSV
 └── src/
     ├── main.py                ← entry point
     ├── auth/
@@ -117,6 +119,30 @@ SITE_JWT={"token":"eyJ...","expiresAt":1234567890000}
 rm .site_token_cache.json
 python -m src.main 49
 ```
+
+---
+
+## JSON to Anki TSV
+
+Convert all quiz JSON files in `output/` into a TSV file importable in Anki.
+
+- **Front (recto):** question text (`text`)
+- **Back (verso):** first answer in `correct_answer` (substring before `|`)
+
+### Command
+
+```bash
+python3 scripts/json_to_anki.py --input-dir output --output anki_cards.tsv
+```
+
+### Import in Anki
+
+1. **File → Import**
+2. Select `anki_cards.tsv`
+3. Separator: **Tab**
+4. Map fields:
+   - Field 1 → Front
+   - Field 2 → Back
 
 ---
 
